@@ -104,7 +104,7 @@ const ScrollEffects = {
 
   initActiveLink() {
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    const navLinks = document.querySelectorAll('.nav-tab, .mobile-nav-link');
 
     const updateActiveLink = () => {
       let currentSection = '';

@@ -89,49 +89,50 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.nav-link {
+.nav-tab {
   position: relative;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-weight: 500;
-  font-size: 0.9rem;
-  padding: 0.5rem 0;
-  transition: color 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  display: block;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--text-primary);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
-}
-
-.nav-link.active {
+.nav-tab:hover {
   color: var(--text-primary);
-  font-weight: 700;
+  background-color: #f5f5f5;
+  border-bottom-color: #2563eb;
+}
+
+.nav-tab.active {
+  color: var(--text-primary);
+  font-weight: 600;
+  border-bottom-color: #2563eb;
+}
+
+.dark .nav-tab:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .mobile-nav-link {
   color: var(--text-primary);
   font-weight: 500;
   display: block;
-  padding: 0.75rem 0;
-  transition: color 0.3s ease;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
 }
 
 .mobile-nav-link:hover {
-  color: var(--primary-500);
+  background-color: #f5f5f5;
+  border-left-color: #2563eb;
+  color: #2563eb;
+}
+
+.dark .mobile-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* ===== Hero Section ===== */
@@ -317,134 +318,30 @@ section {
 
 /* ===== Projects Section ===== */
 .project-card {
-  border-radius: 0.5rem;
-  overflow: hidden;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--card-shadow);
-  transition: all 0.3s ease;
-}
-
-.dark .project-card {
-  background: var(--bg-secondary);
-  border-color: #404040;
+  /* Tailwind의 클래스로 처리됨 */
 }
 
 .project-thumbnail {
   width: 100%;
-  padding: 3rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
+  height: 256px;
   position: relative;
   overflow: hidden;
-  background: var(--bg-secondary);
+  background: #f3f4f6;
 }
 
-.project-thumbnail::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 30px 30px;
+.dark .project-thumbnail {
+  background: #374151;
 }
 
-.dark .project-thumbnail::before {
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
+.project-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-thumbnail svg {
-  position: relative;
-  z-index: 1;
-  color: var(--text-light);
-}
-
-.project-card p {
-  color: var(--text-secondary);
-}
-
-.dark .project-card p {
-  color: #cbd5e1;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.35rem 0.85rem;
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 0.25rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.dark .tag {
-  background: transparent;
-  border-color: #404040;
-  color: var(--text-secondary);
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.2rem;
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  border-radius: 0.25rem;
-  font-weight: 500;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.btn-outline:hover {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-  border-color: var(--text-primary);
-}
-
-.dark .btn-outline {
-  border-color: #404040;
-  color: var(--text-primary);
-}
-
-.dark .btn-outline:hover {
-  background: var(--text-primary);
-  color: #1a1a1a;
-  border-color: var(--text-primary);
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.2rem;
-  background: var(--text-primary);
-  color: var(--bg-primary);
-  border-radius: 0.25rem;
-  border: none;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.btn-primary:hover {
-  opacity: 0.8;
-}
-
-.dark .btn-primary {
-  background: #ffffff;
-  color: #1a1a1a;
+.project-card:hover .project-thumbnail img {
+  transform: scale(1.1);
 }
 
 /* ===== Contact Form ===== */
