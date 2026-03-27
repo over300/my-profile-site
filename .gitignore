@@ -1,35 +1,41 @@
-# 운영 체제
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Production/Build
+dist/
+build/
+out/
+.next/
+.nuxt/
+coverage/
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.DS_Store
 *.sublime-project
 *.sublime-workspace
-.claude/
 
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
-package-lock.json
-yarn.lock
-
-# 환경 변수
+# OS
+Thumbs.db
+.DS_Store
 .env
 .env.local
 .env.*.local
 
-# 빌드 결과물
-dist/
-build/
-*.min.js
-*.min.css
-
-# 기타
-.DS_Store
+# Logs
+logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
