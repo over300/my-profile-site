@@ -1,26 +1,26 @@
 /* ===== CSS 커스텀 변수 ===== */
 :root {
   --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
+  --bg-secondary: #f9f9f9;
   --text-primary: #000000;
-  --text-secondary: #666666;
+  --text-secondary: #5a5a5a;
   --text-light: #999999;
-  --border-color: #e0e0e0;
-  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --card-shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
+  --border-color: #e5e5e5;
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --card-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.1);
   --accent-primary: #000000;
-  --accent-secondary: #333333;
+  --accent-secondary: #2a2a2a;
 }
 
 .dark {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #262626;
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
   --text-primary: #ffffff;
-  --text-secondary: #b3b3b3;
+  --text-secondary: #c0c0c0;
   --text-light: #808080;
-  --border-color: #404040;
+  --border-color: #333333;
   --accent-primary: #ffffff;
-  --accent-secondary: #e0e0e0;
+  --accent-secondary: #e5e5e5;
 }
 
 /* ===== 기본 스타일 ===== */
@@ -137,12 +137,12 @@ body {
 
 /* ===== Hero Section ===== */
 .hero-section {
-  background: linear-gradient(135deg, #ffffff, #f5f5f5);
+  background: #ffffff;
   position: relative;
 }
 
 .dark .hero-section {
-  background: linear-gradient(135deg, #1a1a1a, #262626);
+  background: #0f0f0f;
 }
 
 /* 파티클 배경 */
@@ -316,32 +316,86 @@ section {
   transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ===== Projects Section ===== */
+/* ===== Projects Section - Masonry Layout ===== */
+.projects-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
 .project-card {
-  /* Tailwind의 클래스로 처리됨 */
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+.project-card.lg {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.project-card.tall {
+  grid-row: span 2;
 }
 
 .project-thumbnail {
   width: 100%;
-  height: 256px;
+  height: 100%;
+  min-height: 300px;
   position: relative;
   overflow: hidden;
-  background: #f3f4f6;
+  background: var(--bg-secondary);
 }
 
 .dark .project-thumbnail {
-  background: #374151;
+  background: var(--bg-secondary);
 }
 
 .project-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover .project-thumbnail img {
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+/* 프로젝트 카드 오버레이 */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-overlay h3 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.project-overlay p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
 }
 
 /* ===== Contact Form ===== */
@@ -434,19 +488,68 @@ section {
   }
 }
 
+/* ===== 섹션 배경 다크 ===== */
+.dark-section {
+  background: #000000;
+  color: #ffffff;
+}
+
+.dark-section h2,
+.dark-section h3 {
+  color: #ffffff;
+}
+
+.dark-section p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== 타이포그래피 업그레이드 ===== */
+.serif-title {
+  font-family: 'Georgia', 'Garamond', serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
 /* ===== 반응형 ===== */
 @media (max-width: 768px) {
   section {
     padding: 3rem 1rem !important;
   }
 
-  .project-card {
-    margin: 0;
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card.lg {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .project-card.tall {
+    grid-row: span 1;
   }
 
   .btn-outline,
   .btn-primary {
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .project-overlay {
+    padding: 1.5rem;
+  }
+
+  .project-overlay h3 {
+    font-size: 1.2rem;
   }
 }
